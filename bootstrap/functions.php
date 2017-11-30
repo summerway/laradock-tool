@@ -11,69 +11,6 @@ namespace {
     /************  global const *************/
     const ONE_DAY = 86400;  //一天的时间戳
 
-
-    /** ++++++++++++++++++++++++++++++++++++++++返回值使用说明++++++++++++++++++++++++++++++++++++++++
-     *code值说明
-     *成功       （200）
-     *参数缺失   （400 用msg说明，详见msg说明）
-     *参数错误   （400 用msg说明，详见msg说明）
-     *参数格式错误（400 用msg说明，详见msg说明）
-     *无权限操作  （403）
-     *未找到资源  （404）
-     *服务器错误  （500)
-
-     *++++++++++++++++++++++++++++++++++++++++++msg说明++++++++++++++++++++++++++++++++++++++++++++
-     *msg 参考说明：
-
-     *200类:
-     *   success
-     *400类（主要是参数类错误）：
-     *   参数缺失 miss parameters
-     *   参数格式不正确  bad parameters
-     *   参数错误  bad request （可以加具体原因，如不满足什么条件）
-     *403类：
-     *   无权限 no right to call this api
-     *404类：
-     *   not found
-     *500 类
-     *   server error
-     */
-
-    const
-        CODE_SUCCESS            = 200,
-        CODE_PARAMETER_ERROR    = 400,
-        CODE_PERMISSION_ERROR   = 403,
-        CODE_NOT_FOUND          = 404,
-        CODE_SYSTEM_ERROR       = 500;
-
-    if (! function_exists('responseSuccess')) {
-        /**
-         * @param $data
-         * @param string $msg
-         * @param string $url
-         * @return \Illuminate\Http\JsonResponse
-         */
-        function responseSuccess($data = true, $msg = "", $url = ""){
-            if(strlen($msg) > 0){
-                return Response::json(['status' => CODE_SUCCESS, 'data' => $data, 'msg' => $msg, 'url' => $url,'success' => true]);
-            }else{
-                return Response::json(['status' => CODE_SUCCESS, 'data' => $data, 'url' => $url,'success' => true]);
-            }
-        }
-    }
-
-    if (! function_exists('responseError')) {
-        /**
-         * @param $code
-         * @param string $msg
-         * @return \Illuminate\Http\JsonResponse
-         */
-        function responseError($code, $msg = ""){
-            errorLog($msg);
-            return Response::json(['status' => $code, 'ErrorMsg' => $msg],$code);
-        }
-    }
-
     if (! function_exists('accessLog')) {
         /**
          * 访问日志

@@ -11,9 +11,8 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+//调试路由
+Route::any('debug','DebugController@index');
 
 Route::get('index', function () {
     return view('index');
@@ -21,5 +20,6 @@ Route::get('index', function () {
 
 
 Route::get('/', function () {
-    return redirect()->intended('index');
+    return view('index');
+    //return redirect()->intended('index');
 });

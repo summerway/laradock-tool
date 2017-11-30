@@ -13,6 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//upload
+Route::any('uploadPic','UploadController@uploadPic');
+Route::any('removePic','UploadController@removePic');
+
+/**
+ * 虚拟主机类
+ */
+Route::group(['prefix' => 'virtualHost'], function () {
+
+    //项目列表
+    Route::any('dataList','VirtualHostController@dataList');
+
+    //创建项目
+    Route::post('create','VirtualHostController@create');
+
+    //删除项目
+    Route::post('delete','VirtualHostController@delete');
 });

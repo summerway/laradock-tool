@@ -16,8 +16,9 @@ class CreateVirtualHostTable extends Migration
         Schema::create('virtual_host', function (Blueprint $table) {
             $table->increments('id');
             $table->string('server_name',100)->comment("主机名");
+            $table->string('project_name',100)->comment("项目名称");
             $table->string('desc',100)->comment("描述");
-            $table->string('image',200)->comment("图片");
+            $table->string('cover',200)->comment("封面");
             $table->string('path',200)->comment("地址");
             $table->timestamps();
         });
